@@ -145,25 +145,24 @@ function addLayers(airports, nearest, route) {
         }
     });
 
-    map.addLayer({
-        'id': 'globe-newPoint',
-        'type': 'circle',
-        'source': 'newPoint',
-        'paint': {
-            'circle-radius': [
-                'interpolate',
-                ['linear'],
-                ['zoom'],
-                0,
-                0.25,
-                3,
-                4
-            ],
-            'circle-opacity': 1,
-            'circle-blur': 0,
-            'circle-color': '#811b32'
+    map.loadImage(
+        'pret_star.png',
+        (error, image) => {
+            if (error) throw error;
+            map.addImage('pret_star', image);
+
+            map.addLayer({
+                'id': 'globe-newPoint',
+                'type': 'symbol',
+                'source': 'newPoint',
+                'layout': {
+                    'icon-image': 'pret_star',
+                    'icon-size': 0.25,
+                    'icon-allow-overlap': true,
+                }
+            });
         }
-    });
+    );
 }
 </script>
 </body>
